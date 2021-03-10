@@ -2,4 +2,6 @@
 
 <%= render 'form', concert: @concert %>
 
-<%= link_to 'Back', concerts_path %>
+<div class="p-3 mb-2 bg-danger text-white">
+<%= link_to 'Back', band_concerts_path(@band) %>
+</div>

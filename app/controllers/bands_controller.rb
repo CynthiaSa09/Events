@@ -17,6 +17,7 @@ class BandsController < ApplicationController
 
   # GET /bands/1/edit
   def edit
+    @kinds = Band.kinds.map{|key, value| [key, key]}
   end
 
   # POST /bands or /bands.json

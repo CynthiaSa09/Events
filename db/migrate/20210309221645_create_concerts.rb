@@ -4,7 +4,7 @@ class CreateConcerts < ActiveRecord::Migration[6.1]
       t.string :location, null: false
       t.date :date, null: false
       t.integer :quantity
-      t.time :duration
+      t.integer :duration
 
       t.timestamps
     end

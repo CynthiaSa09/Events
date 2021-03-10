@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_03_09_223030) do
     t.string "location", null: false
     t.date "date", null: false
     t.integer "quantity"
-    t.time "duration"
+    t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "band_id", null: false

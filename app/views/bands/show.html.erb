@@ -15,5 +15,15 @@
   <%= @band.start_date %>
 </p>
 
+<% if @band.concerts.present? %>
+<ul>
+<% @band.concerts.each do |concert| %>
+<li><%= link_to concert.location, band_concert_path(@band, concert) %></li>
+<% end %> 
+</ul>
+<% end %>
+
 <%= link_to 'Edit', edit_band_path(@band) %> |
 <%= link_to 'Back', bands_path %>
+
+
