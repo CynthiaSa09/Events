@@ -1,6 +1,6 @@
 class ConcertsController < ApplicationController
   before_action :set_concert, only: %i[ show edit update destroy ]
-  before_action :set_band, only: %i[ index show new edit ]
+  before_action :set_band
   # GET /concerts or /concerts.json
   
   def index
@@ -22,13 +22,15 @@ class ConcertsController < ApplicationController
 
   # POST /concerts or /concerts.json
   def create
-    @concert = Concert.new(concert_params)
+    #band = Band.find(params[:band_id])
+    @concert = Concert.new(concert_params.merge(band:@band))
 
     respond_to do |format|
       if @concert.save
-        format.html { redirect_to @concert, notice: "Concert was successfully created." }
+        format.html { redirect_to band_path(@band), notice: "Concert was successfully created." }
         format.json { render :show, status: :created, location: @concert }
       else
+        @band = Band.find(params[:band_id])
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @concert.errors, status: :unprocessable_entity }
       end
@@ -38,8 +40,8 @@ class ConcertsController < ApplicationController
   # PATCH/PUT /concerts/1 or /concerts/1.json
   def update
     respond_to do |format|
-      if @concert.update(concert_params)
-        format.html { redirect_to [@band,@concert], notice: "Concert was successfully updated." }
+      if @concert.update(concert_params.merge(band:@band))
+        format.html { redirect_to band_concert_path(@band, @concert), notice: "Concert was successfully updated." }
         format.json { render :show, status: :ok, location: @concert }
       else
         format.html { render :edit, status: :unprocessable_entity }

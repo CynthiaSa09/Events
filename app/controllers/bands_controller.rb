@@ -13,11 +13,13 @@ class BandsController < ApplicationController
   # GET /bands/new
   def new
     @band = Band.new
+    @kinds = Band.kinds.keys
   end
 
   # GET /bands/1/edit
   def edit
-    @kinds = Band.kinds.map{|key, value| [key, key]}
+  @kinds = Band.kinds.keys
+    #@kinds = Band.kinds.map{|key, value| [key, key]}
   end
 
   # POST /bands or /bands.json
